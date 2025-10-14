@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-6">
+    <h4>Available Jobs</h4>
+    <div *ngFor="let job of jobs" class="card mb-2">
+      <div class="card-body">
+        <h5>{{job.title}}</h5>
+        <p class="mb-1"><strong>{{job.company}}</strong> — {{job.location}}</p>
+        <p class="mb-1">{{job.description}}</p>
+        <button class="btn btn-sm btn-outline-primary me-2" (click)="select(job)">Edit</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="delete(job.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <h4>Create Job</h4>
+    <div class="mb-3">
+      <input class="form-control mb-2" placeholder="Title" [(ngModel)]="newJob.title"/>
+      <input class="form-control mb-2" placeholder="Company" [(ngModel)]="newJob.company"/>
+      <input class="form-control mb-2" placeholder="Location" [(ngModel)]="newJob.location"/>
+      <textarea class="form-control mb-2" placeholder="Description" [(ngModel)]="newJob.description"></textarea>
+      <button class="btn btn-success" (click)="create()">Create</button>
+    </div>
+
+    <div *ngIf="selected">
+      <h4>Edit Job</h4>
+      <input class="form-control mb-2" [(ngModel)]="selected.title"/>
+      <input class="form-control mb-2" [(ngModel)]="selected.company"/>
+      <input class="form-control mb-2" [(ngModel)]="selected.location"/>
+      <textarea class="form-control mb-2" [(ngModel)]="selected.description"></textarea>
+      <button class="btn btn-primary me-2" (click)="update()">Save</button>
+      <button class="btn btn-secondary" (click)="selected=null">Cancel</button>
+    </div>
+  </div>
+</div>
